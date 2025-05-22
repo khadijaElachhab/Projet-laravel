@@ -9,17 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             {{-- User Info Section --}}
             <div class="glass-card bg-white dark:bg-gray-800 dark:bg-gradient-to-br dark:from-purple-800/20 dark:to-indigo-900/20 backdrop-filter backdrop-blur-lg border border-gray-200 dark:border-white/10 overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ $user->name }}</h3>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Nom: {{ $user->name }}</h3>
                 @if($user->title)
-                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">{{ $user->title }}</p>
+                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">Titre: {{ $user->title }}</p>
                 @endif
-                <p class="text-gray-800 dark:text-gray-200 leading-relaxed">{{ $user->bio }}</p>
+                <p class="text-gray-800 dark:text-gray-200 leading-relaxed">Bio: {{ $user->bio }}</p>
             </div>
 
             {{-- Projects and Skills Section --}}
-            <div class="glass-card bg-white dark:bg-gray-800 dark:bg-gradient-to-br dark:from-purple-800/20 dark:to-indigo-900/20 backdrop-filter backdrop-blur-lg border border-gray-200 dark:border-white/10 overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {{-- Projects Section --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {{-- Projects Section --}}
+                <div class="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
                     <div>
                         <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Projets</h4>
                         @if($user->projects->count() > 0)
@@ -38,14 +38,16 @@
                             <p class="text-gray-400 dark:text-gray-500 text-sm">Aucun projet à afficher.</p>
                         @endif
                     </div>
+                </div>
 
-                    {{-- Skills Section --}}
+                {{-- Skills Section --}}
+                <div class="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
                     <div>
                         <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Compétences</h4>
                         @if($user->skills->count() > 0)
                             <div class="flex flex-wrap gap-3">
                                 @foreach ($user->skills as $skill)
-                                    <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-sm font-medium px-3 py-1 rounded-full">{{ $skill->name }} ({{ $skill->level }}%)</span>
+                                    <span class="text-green-800 dark:text-green-200 text-sm font-medium px-3 py-1 rounded-full">{{ $skill->name }}</span>
                                 @endforeach
                             </div>
                         @else
@@ -57,8 +59,8 @@
 
             {{-- Download CV Button --}}
             <div class="text-center mt-8">
-                <a href="{{ route('pdf.generate', $user->username) }}" class="glass-button bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg text-lg font-semibold shadow-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-300">
-                    Télécharger mon CV
+                <a href="{{ route('pdf.generate', $user->username) }}" class="glass-button bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-6 py-3 rounded-md text-lg font-semibold shadow-lg transition-all duration-300">
+                    Télécharger CV
                 </a>
             </div>
         </div>

@@ -1,55 +1,46 @@
-<nav x-data="{ open: false }" class="bg-white/10 backdrop-blur-lg border-b border-white/20 dark:bg-[#161e2e] dark:text-gray-100">
+<nav x-data="{ open: false }" class="bg-gray-100 text-gray-900">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="text-gray-900 font-bold text-xl dark:text-white">
-                        DevProfile
+                    <a href="{{ route('dashboard') }}" class="text-gray-900 font-bold text-xl">
+                        Profil Personnel
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-gray-900 hover:text-gray-700">
-                        {{ __('Dashboard') }}
+                        {{ __('Tableau de bord') }}
                     </x-nav-link>
                     <x-nav-link :href="route('projects.index')" :active="request()->routeIs('projects.*')" class="text-gray-900 hover:text-gray-700">
-                        {{ __('Projects') }}
+                        {{ __('Projets') }}
                     </x-nav-link>
                     <x-nav-link :href="route('skills.index')" :active="request()->routeIs('skills.*')" class="text-gray-900 hover:text-gray-700">
-                        {{ __('Skills') }}
+                        {{ __('Compétences') }}
                     </x-nav-link>
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="text-gray-900 hover:text-gray-700">
-                        {{ __('Profile') }}
+                        {{ __(' Profil') }}
                     </x-nav-link>
                     @if(auth()->user()->username)
                         <x-nav-link :href="route('profile.show', auth()->user()->username)" :active="request()->routeIs('profile.show')" class="text-gray-900 hover:text-gray-700">
-                            {{ __('Public Profile') }}
+                            {{ __('CV') }}
                         </x-nav-link>
                     @endif
                 </div>
             </div>
 
             <div class="flex items-center gap-4">
-                <!-- Dark mode toggle -->
-                <div class="flex items-center gap-2">
-                    <span id="dark-label" class="text-xs font-semibold text-gray-500 dark:text-gray-300 mr-2">DARK</span>
-                    <button id="dark-toggle" type="button"
-                        class="relative w-14 h-7 bg-gray-300 dark:bg-gray-700 rounded-full transition focus:outline-none flex-shrink-0"
-                        onclick="toggleDarkMode()">
-                        <span id="toggle-circle" class="absolute left-1 top-1 w-5 h-5 bg-white rounded-full shadow transition-all duration-300"></span>
-                    </button>
-                    <span id="light-label" class="text-xs font-semibold text-gray-500 dark:text-gray-300 ml-2">LIGHT</span>
-                </div>
+                
                 <!-- Paramètres utilisateur -->
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
             <!-- Settings Dropdown -->
                     <div class="ml-3 relative">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 dark:text-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
                                     <div class="ml-1">
@@ -83,7 +74,7 @@
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:text-gray-700 hover:bg-white/10 focus:outline-none focus:bg-white/10 focus:text-gray-700 transition duration-150 ease-in-out">
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:text-gray-700 hover:bg-green-800 focus:outline-none focus:bg-green-800 focus:text-gray-700 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -102,9 +93,6 @@
             <x-responsive-nav-link :href="route('projects.index')" :active="request()->routeIs('projects.*')" class="text-gray-900 hover:text-gray-700">
                 {{ __('Projects') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('skills.index')" :active="request()->routeIs('skills.*')" class="text-gray-900 hover:text-gray-700">
-                {{ __('Skills') }}
-            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="text-gray-900 hover:text-gray-700">
                 {{ __('Profile') }}
             </x-responsive-nav-link>
@@ -118,12 +106,12 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-white/20">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-900 dark:text-white">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-base text-gray-900">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-700">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')" class="text-gray-900 hover:text-gray-700">
+                <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="text-gray-900 hover:text-gray-700">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 

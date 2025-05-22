@@ -22,12 +22,11 @@ class SkillController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'level' => 'required|integer|min:0|max:100'
         ]);
         Skill::create([
             'user_id' => Auth::id(),
             'name' => $request->name,
-            'level' => $request->level
+            'level' => 0,
         ]);
         return redirect()->route('skills.index')->with('success', 'Compétence ajoutée !');
     }

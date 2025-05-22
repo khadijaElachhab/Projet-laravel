@@ -14,15 +14,6 @@
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
-                    <div class="mb-4">
-                        <x-input-label for="level" :value="'Niveau (0-100)'" />
-                        <input type="range" id="level" name="level" min="0" max="100" value="{{ old('level', $skill->level) }}" 
-                               class="block mt-1 w-full" required
-                               oninput="this.nextElementSibling.value = this.value">
-                        <output class="text-gray-700 dark:text-gray-300">{{ old('level', $skill->level) }}%</output>
-                        <x-input-error :messages="$errors->get('level')" class="mt-2" />
-                    </div>
-
                     <div class="flex justify-end">
                         <x-primary-button>Enregistrer</x-primary-button>
                     </div>
